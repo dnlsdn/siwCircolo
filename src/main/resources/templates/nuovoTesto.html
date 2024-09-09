@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuovo Testo</title>
+    <link rel="stylesheet" th:href="@{/css/nuovoTesto.css}" type="text/css">
+    <link rel="stylesheet" href="/static/css/nuovoTesto.css">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/}">
+        <img alt="index" th:src="@{/images/back-arrow.png}">
+    </a>
+    <div class="container">
+        <h1>Aggiungi un Testo</h1>
+    </div>
+</header>
+<main>
+    <div class="principale">
+        <h1>Nuovo Testo</h1>
+        <form th:action="@{/scrittore/testoAggiunto}" th:method="POST">
+            <label>
+                <input name="titolo" placeholder="Titolo" required type="text">
+            </label>
+            <label>
+                <textarea name="testo" placeholder="Testo" required></textarea>
+            </label>
+            <label>
+                <input name="scrittoreId" th:value="${scrittoreId}" type="hidden">
+            </label>
+            <button type="submit">Inserisci</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

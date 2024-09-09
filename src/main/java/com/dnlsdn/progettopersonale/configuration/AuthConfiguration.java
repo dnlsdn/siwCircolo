@@ -44,7 +44,7 @@ public class AuthConfiguration {
                 .requestMatchers(HttpMethod.GET, "/", "/index", "/index.html", "/register", "/test", "/css/**", "/images/**", "/favicon.ico", "/aggiorna").permitAll()
                 .requestMatchers(HttpMethod.POST, "/register", "/index", "/index.html", "/test").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("AMMINISTRATORE")
-                .requestMatchers("/giudice/**").hasAuthority("GIUDICE")
+                .requestMatchers("/scrittore/**").hasAuthority("SCRITTORE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

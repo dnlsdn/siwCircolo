@@ -1,11 +1,12 @@
 package com.dnlsdn.progettopersonale.model;
 
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
-public class Giudice {
+public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

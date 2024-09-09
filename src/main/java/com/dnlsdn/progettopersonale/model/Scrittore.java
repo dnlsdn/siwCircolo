@@ -1,5 +1,6 @@
 package com.dnlsdn.progettopersonale.model;
 
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public class Scrittore {
     private String nome;
     private String cognome;
     private LocalDate dataNascita;
-    private int voti;
+    private int votoTotale;
 
     @OneToMany(mappedBy="scrittore", cascade = CascadeType.ALL)
     private List<Libro> libri;
@@ -56,12 +57,12 @@ public class Scrittore {
         this.dataNascita = dataNascita;
     }
 
-    public int getVoti() {
-        return voti;
+    public int getVotoTotale() {
+        return votoTotale;
     }
 
-    public void setVoti(int voti) {
-        this.voti = voti;
+    public void setVotoTotale(int votoTotale) {
+        this.votoTotale = votoTotale;
     }
 
     public List<Libro> getLibri() {

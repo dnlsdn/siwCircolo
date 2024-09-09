@@ -16,7 +16,7 @@ public class Credenziali {
     @OneToOne(mappedBy = "credenziali")
     private Scrittore scrittore;
     @OneToOne(mappedBy = "credenziali")
-    private Giudice giudice;
+    private Utente utente;
 
     public Credenziali(String username, String password, Ruolo ruolo) {
         this.username = username;
@@ -68,17 +68,17 @@ public class Credenziali {
         this.scrittore = scrittore;
     }
 
-    public Giudice getGiudice() {
-        return giudice;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setGiudice(Giudice giudice) {
-        this.giudice = giudice;
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public enum Ruolo {
         SCRITTORE,
-        GIUDICE,
+        UTENTE,
         AMMINISTRATORE
     }
 }

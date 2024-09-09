@@ -1,12 +1,12 @@
 package com.dnlsdn.progettopersonale.controller;
 
 import com.dnlsdn.progettopersonale.model.Credenziali;
-import com.dnlsdn.progettopersonale.model.Giudice;
+import com.dnlsdn.progettopersonale.model.Utente;
 import com.dnlsdn.progettopersonale.model.Scrittore;
 import com.dnlsdn.progettopersonale.service.CredenzialiService;
 import com.dnlsdn.progettopersonale.service.LibroService;
 import com.dnlsdn.progettopersonale.service.ScrittoreService;
-import com.dnlsdn.progettopersonale.service.GiudiceService;
+import com.dnlsdn.progettopersonale.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -33,7 +33,7 @@ public class RegisterController {
     private ScrittoreService giocatoreService;
 
     @Autowired
-    private GiudiceService giudiceService;
+    private UtenteService utenteService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -93,13 +93,13 @@ public class RegisterController {
                 scrittore.setDataNascita(dataNascita);
                 scrittore.setCredenziali(credenziali);
                 giocatoreService.save(scrittore);
-            } else if (ruoloEnum == Credenziali.Ruolo.GIUDICE) {
-                Giudice giudice = new Giudice();
-                giudice.setNome(nome);
-                giudice.setCognome(cognome);
-                giudice.setDataNascita(dataNascita);
-                giudice.setCredenziali(credenziali);
-                giudiceService.save(giudice);
+            } else if (ruoloEnum == Credenziali.Ruolo.UTENTE) {
+                Utente utente = new Utente();
+                utente.setNome(nome);
+                utente.setCognome(cognome);
+                utente.setDataNascita(dataNascita);
+                utente.setCredenziali(credenziali);
+                utenteService.save(utente);
             }
 
             redirectAttributes.addFlashAttribute("success", "Credenziali salvate con successo!");

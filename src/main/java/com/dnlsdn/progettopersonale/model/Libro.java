@@ -15,14 +15,6 @@ public class Libro {
     @ManyToOne
     private Scrittore scrittore;
 
-    public Libro(Long id, String titolo, String testo, int voto, Scrittore scrittore) {
-        this.id = id;
-        this.titolo = titolo;
-        this.testo = testo;
-        this.voto = 0;
-        this.scrittore = scrittore;
-    }
-
     public Libro() {
 
     }

@@ -18,12 +18,12 @@
                    value="SCRITTORE">
             <label class="picker-option" for="scrittore">Scrittore</label>
 
-            <input id="giudice" name="ruolo"
-                   th:checked="${ruoloSelezionato == T(com.dnlsdn.progettopersonale.model.Credenziali.Ruolo).GIUDICE}"
-                   th:onclick="'window.location.href=\'/aggiorna?ruolo=GIUDICE\''"
+            <input id="utente" name="ruolo"
+                   th:checked="${ruoloSelezionato == T(com.dnlsdn.progettopersonale.model.Credenziali.Ruolo).UTENTE}"
+                   th:onclick="'window.location.href=\'/aggiorna?ruolo=UTENTE\''"
                    type="radio"
-                   value="GIUDICE">
-            <label class="picker-option" for="giudice">Giudice</label>
+                   value="UTENTE">
+            <label class="picker-option" for="utente">Utente</label>
         </div>
 
         <input name="username" placeholder="Username" required type="text">
@@ -38,7 +38,7 @@
             <input id="dataNascita" name="dataNascita" required type="date">
         </div>
 
-        <div th:if="${ruoloSelezionato == T(com.dnlsdn.progettopersonale.model.Credenziali.Ruolo).GIUDICE}">
+        <div th:if="${ruoloSelezionato == T(com.dnlsdn.progettopersonale.model.Credenziali.Ruolo).UTENTE}">
             <input name="nome" placeholder="Nome" required type="text">
             <input name="cognome" placeholder="Cognome" required type="text">
             <input id="dataNascita1" name="dataNascita" required type="date">

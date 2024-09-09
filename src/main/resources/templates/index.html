@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Circolo Scrittori</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link href="/static/css/index.css" rel="stylesheet">
 </head>
 <body>
-<h1>ok</h1>
+<header>
+    <div class="container" sec:authorize="isAnonymous()">
+        <h1>Benvenuto</h1>
+        <p>Esegui il login per usufruire di tutte le risorse!</p>
+        <a th:href="@{/login}" th:method="GET" class="button login-button">Accedi</a>
+    </div>
+
+    <div class="container" sec:authorize="isAuthenticated()">
+        <h1>Benvenuto <span sec:authentication="name"></span></h1>
+        <a th:href="@{/logout}" th:method="POST" class="button login-button">Log Out</a>
+    </div>
+</header>
+<div class="container">
+    <div class="buttons">
+        <a th:href="@{/classifica}" th:method="GET" class="button">Classifica Scrittori</a>
+
+        <div sec:authorize="hasAuthority('SCRITTORE')">
+            <a th:href="@{/scrittore/nuovoTesto(username=${#authentication.principal.username})}" th:method="GET" class="button">Carica Libro</a>
+        </div>
+        <div sec:authorize="!hasAuthority('SCRITTORE')">
+            <a th:href="@{/}" th:method="GET" class="button">Carica Libro</a>
+        </div>
+
+        <a th:href="@{/votazione(username=${#authentication.principal.username})}" th:method="GET" class="button">Vota Libro</a>
+    </div>
+</div>
+<div class="permessi">
+    <div sec:authorize="!hasAuthority('SCRITTORE')">
+        <p class="avviso" style="color: red">Attenzione, non hai i permessi per caricare un nuovo testo!</p>
+    </div>
+</div>
+<p class="avviso" style="color: green" th:if="${testoAggiunto != null}" th:text="${testoAggiunto}"></p>
+<footer class="footer">
+    <p>Circolo degli Scrittori 2024</p>
+</footer>
 </body>
 </html>
