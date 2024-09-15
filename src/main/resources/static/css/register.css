@@ -76,9 +76,9 @@ h1 {
 }
 
 .segmented-picker input[type="radio"]:checked + label {
-    background-color: #06b306;
+    background-color: #166FE5;
     color: #fff;
-    border: 1px solid #06b306;
+    border: 1px solid #166FE5;
 }
 
 form input {
@@ -101,11 +101,11 @@ button {
     width: 90%;
     color: #fff;
     cursor: pointer;
-    background: green;
+    background: #1877F2;
 }
 
 button:hover {
-    background: #06b306;
+    background: #166FE5;
 }
 
 input:focus {
@@ -125,7 +125,7 @@ input:focus {
 }
 
 .login a {
-    color: green;
+    color: #1877F2;
     text-decoration: none;
 }
 
@@ -150,7 +150,7 @@ select {
 }
 
 select:focus {
-    border-color: #06b306;
+    border-color: #166FE5;
     /*background-color: #fff;*/
     outline: none;
 }
@@ -170,7 +170,7 @@ select:focus {
 }
 
 .footer {
-    background-color: green;
+    background-color: #1877F2;
     color: white;
     text-align: center;
     padding: 20px 0;

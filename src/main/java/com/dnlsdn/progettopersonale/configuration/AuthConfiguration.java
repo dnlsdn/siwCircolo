@@ -41,9 +41,9 @@ public class AuthConfiguration {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/index.html", "/register", "/test", "/css/**", "/images/**", "/favicon.ico", "/aggiorna").permitAll()
-                .requestMatchers(HttpMethod.POST, "/register", "/index", "/index.html", "/test").permitAll()
-                .requestMatchers("/admin/**").hasAuthority("AMMINISTRATORE")
+                .requestMatchers(HttpMethod.GET, "/", "/index", "/index.html", "/register", "/css/**", "/images/**", "/favicon.ico", "/aggiorna").permitAll()
+                .requestMatchers(HttpMethod.POST, "/register", "/index", "/index.html").permitAll()
+                //.requestMatchers("/admin/**").hasAuthority("AMMINISTRATORE")
                 .requestMatchers("/scrittore/**").hasAuthority("SCRITTORE")
                 .anyRequest().authenticated()
                 .and()

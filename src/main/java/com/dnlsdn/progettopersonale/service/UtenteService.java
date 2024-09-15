@@ -13,4 +13,8 @@ public class UtenteService {
     public void save(Utente utente) {
         this.utenteRepository.save(utente);
     }
+
+    public Utente findByCredenzialiUsername(String username) {
+        return this.utenteRepository.findByCredenzialiUsername(username);
+    }
 }

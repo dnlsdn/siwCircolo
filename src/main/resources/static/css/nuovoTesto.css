@@ -15,7 +15,7 @@ header {
     justify-content: start;
     flex-direction: row;
     align-items: center;
-    background-color: green;
+    background-color: #1877F2;
     color: white;
     text-align: center;
 }
@@ -68,9 +68,9 @@ form button {
     width: 90%;
     color: #fff;
     cursor: pointer;
-    background: green;
+    background: #1877F2;
 }
 
 button:hover {
-    background: #06b306;
+    background: #166FE5;
 }
