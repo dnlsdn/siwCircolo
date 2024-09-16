@@ -8,9 +8,9 @@ public class Votazione {
     private Long id;
 
     private Long mittenteId;
-    @OneToOne
+    @ManyToOne
     private Scrittore destinatario;
-    @OneToOne
+    @ManyToOne
     private Libro libro;
     private int voto;
 

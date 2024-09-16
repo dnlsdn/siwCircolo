@@ -1,6 +1,9 @@
 package com.dnlsdn.progettopersonale.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 @Entity
 public class Libro {
@@ -8,12 +11,18 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String titolo;
+    @NotNull
     private String testo;
+    @NotNull
     private int voto;
 
     @ManyToOne
     private Scrittore scrittore;
+
+    @OneToMany(mappedBy = "libro")
+    private List<Votazione> votazioni;
 
     public Libro() {
 

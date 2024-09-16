@@ -2,6 +2,9 @@ package com.dnlsdn.progettopersonale.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,8 +15,14 @@ public class Scrittore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String cognome;
+
+//    @Min(1908)
+//    @Max(2024)
     private LocalDate dataNascita;
     private int votoTotale;
 
@@ -22,6 +31,9 @@ public class Scrittore {
 
     @OneToOne
     private Credenziali credenziali;
+
+    @OneToMany(mappedBy = "destinatario")
+    private List<Votazione> votazioni;
 
 
 

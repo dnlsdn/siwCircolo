@@ -19,7 +19,6 @@ public class CredenzialiService {
         this.credenzialiRepository.save(credenziali);
     }
 
-    @Query("SELECT c.id FROM Credenziali c WHERE c.username = :username")
     public Long findIdByUsername(String username) {
         return this.credenzialiRepository.findIdByUsername(username);
     }

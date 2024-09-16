@@ -2,6 +2,9 @@ package com.dnlsdn.progettopersonale.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -11,8 +14,14 @@ public class Utente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String cognome;
+
+//    @Min(1908)
+//    @Max(2024)
     private LocalDate dataNascita;
 
     @OneToOne

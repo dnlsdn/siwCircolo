@@ -29,10 +29,14 @@ header {
     padding-top: 8px;
 }
 
+main {
+    flex: 1;
+}
+
 .immagine-classifica {
     width: 38px;
-    height: 38px;
-    background-size: cover;
+    height: auto;
+    margin-right: 5px;
 }
 
 ul {

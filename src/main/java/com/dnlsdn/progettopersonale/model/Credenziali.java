@@ -1,6 +1,7 @@
 package com.dnlsdn.progettopersonale.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Credenziali {
@@ -8,7 +9,9 @@ public class Credenziali {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String username;
+    @NotNull
     private String password;
 
     @Enumerated(EnumType.STRING)

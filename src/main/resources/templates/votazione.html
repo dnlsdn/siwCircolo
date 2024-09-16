@@ -30,6 +30,7 @@
     <p th:if="${votoPassato != null}" th:text="${votoPassato}" style="margin: 18px; color: red"></p>
     <p th:if="${votoEliminato != null}" th:text="${votoEliminato}" style="margin: 18px; color: green"></p>
     <p th:if="${nonVotato != null}" th:text="${nonVotato}" style="margin: 18px; color: red"></p>
+    <p th:if="${votoInviato != null}" th:text="${votoInviato}" style="margin: 18px; color: green"></p>
     <div class="container">
         <ul class="scrittori-list" th:each="libro : ${libri}">
             <li class="item-lista">

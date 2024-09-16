@@ -82,7 +82,7 @@ public class VotazioneController {
         List<Votazione> votazioni = votazioneService.findAll();
         Long utenteId = credenzialiService.findIdByUsername(username);
         for (Votazione votazione : votazioni) {
-            if (Objects.equals(votazione.getMittenteId(), utenteId)) {
+            if (Objects.equals(votazione.getMittenteId(), utenteId) && votazione.getLibro().equals(libroService.findById(libroId))) {
                 model.addAttribute("votoPassato", "Hai già votato questo testo! Elimina il voto per eseguirne un altro!");
                 List<Libro> libri = libroService.findAll();
                 libri.sort(new ComparatoreLibri());
@@ -105,8 +105,10 @@ public class VotazioneController {
         libri.sort(new ComparatoreLibri());
         model.addAttribute("username", username);
         model.addAttribute("libri", libri);
+        model.addAttribute("votoInviato", "Voto salvato con successo!");
         return "votazione";
     }
+
 
     @GetMapping("/eliminaVoto")
     public String eliminaVoto(@RequestParam("username") String username, @RequestParam("libroId") Long libroId, Model model) {

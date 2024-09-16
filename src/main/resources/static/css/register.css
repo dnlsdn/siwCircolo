@@ -135,6 +135,12 @@ input:focus {
     font-size: 0.8rem;
 }
 
+.success-message {
+    padding: 18px 0 0 0;
+    color: green;
+    font-size: 0.8rem;
+}
+
 select {
     width: 92%;
     height: 42px;

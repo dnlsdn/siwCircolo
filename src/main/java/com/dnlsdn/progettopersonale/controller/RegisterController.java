@@ -30,7 +30,7 @@ public class RegisterController {
     private CredenzialiService credenzialiService;
 
     @Autowired
-    private ScrittoreService giocatoreService;
+    private ScrittoreService scrittoreService;
 
     @Autowired
     private UtenteService utenteService;
@@ -71,7 +71,6 @@ public class RegisterController {
                                @RequestParam(required = false) String nome,
                                @RequestParam(required = false) String cognome,
                                @RequestParam(required = false) LocalDate dataNascita,
-                               RedirectAttributes redirectAttributes,
                                Model model) {
 
         Credenziali.Ruolo ruoloEnum = Credenziali.Ruolo.valueOf(ruolo.toUpperCase());
@@ -92,7 +91,7 @@ public class RegisterController {
                 scrittore.setCognome(cognome);
                 scrittore.setDataNascita(dataNascita);
                 scrittore.setCredenziali(credenziali);
-                giocatoreService.save(scrittore);
+                scrittoreService.save(scrittore);
             } else if (ruoloEnum == Credenziali.Ruolo.UTENTE) {
                 Utente utente = new Utente();
                 utente.setNome(nome);
@@ -102,22 +101,10 @@ public class RegisterController {
                 utenteService.save(utente);
             }
 
-            redirectAttributes.addFlashAttribute("success", "Credenziali salvate con successo!");
-
-            try {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-                Authentication authentication = authenticationManager.authenticate(authToken);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                System.out.println("Autenticazione avvenuta con successo per: " + authentication.getName());
-                model.addAttribute("registrato", "Registrazione Completata. Esegui il login per accedere alle risorse");
-                return "login";
-            } catch (BadCredentialsException e) {
-                System.out.println("Errore di autenticazione: " + e.getMessage());
-                model.addAttribute("error", "Credenziali errate.");
-                return "redirect:/";
-            }
+            model.addAttribute("success", "Credenziali salvate con successo! Loggati per sfruttare tutte le risorse del sito!");
+            return "login";
         } catch (Exception e) {
+            e.printStackTrace();
             model.addAttribute("error", "Errore durante la registrazione. Riprova.");
             return "register";
         }
