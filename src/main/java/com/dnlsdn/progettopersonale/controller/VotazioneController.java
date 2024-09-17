@@ -36,6 +36,8 @@ public class VotazioneController {
     private CredenzialiService credenzialiService;
     @Autowired
     private LibroRepository libroRepository;
+    @Autowired
+    private ScrittoreService scrittoreService;
 
     @RequestMapping("/votazione")
     public String votazione(@RequestParam(value = "username") String username, @RequestParam(value = "titolo", required = false) String titolo, Model model) {
@@ -91,12 +93,17 @@ public class VotazioneController {
                 return "votazione";
             }
         }
+        Scrittore scrittore = libroService.findById(libroId).getScrittore();
         Votazione votazione = new Votazione();
         votazione.setMittenteId(utenteId);
-        votazione.setDestinatario(libroService.findById(libroId).getScrittore());
+        votazione.setDestinatario(scrittore);
         votazione.setLibro(libroService.findById(libroId));
         votazione.setVoto(voto);
         votazioneService.save(votazione);
+        int votoScrittore = scrittore.getVotoTotale();
+        int nuovoVotoScrittore = votoScrittore + voto;
+        scrittore.setVotoTotale(nuovoVotoScrittore);
+        scrittoreService.save(scrittore);
         Libro libro = libroService.findById(libroId);
         int nuovoVoto = libro.getVoto() + voto;
         libro.setVoto(nuovoVoto);
@@ -122,6 +129,11 @@ public class VotazioneController {
                 int votoNuovo = libro.getVoto() - votoSingolo;
                 libro.setVoto(votoNuovo);
                 libroService.save(libro);
+                Scrittore scrittore = libro.getScrittore();
+                int votoScrittore = scrittore.getVotoTotale();
+                int nuovoVotoScrittore = votoScrittore - votazione.getVoto();
+                scrittore.setVotoTotale(nuovoVotoScrittore);
+                scrittoreService.save(scrittore);
                 votazioneService.delete(votazione);
                 model.addAttribute("votoEliminato", "Il voto è stato eliminato con successo!");
                 List<Libro> libri = libroService.findAll();
